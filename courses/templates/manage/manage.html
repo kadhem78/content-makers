@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a href="{% url 'create_course' %}">add courses</a></li>
+        </ol>
+        <!--<ol>
+          <li><a href="#">design</a></li>
+          <li><a href="#">montage</a></li>
+        </ol>-->
+        
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container">
+
+        <div class="row">
+          {% for course in courses %}
+            <div class="col-lg-4  col-md-6 " data-aos="fade-up">
+              <article class="entry">
+
+                <div class="entry-img">
+                  <img src="{{course.course_img.url}}" alt="" class="img-fluid">
+                </div>
+
+                <h2 class="entry-title">
+                  <a href="{{course.course_url}}" target="_blanck">{{course.title}}</a>
+                </h2>
+
+                <div class="entry-meta">
+                  <ul>
+                    <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="blog-single.html">{{course.level}}</a></li>
+                  </ul>
+                </div>
+
+                <div class="entry-content">
+                  <div>
+                    <p>
+                      {{course.decription|truncatewords:'20'}}
+                    </p>
+                  </div>
+                  <div class="read-more">
+                    <a href="{% url 'update_course' course.slug %}">update</a>
+                    <a href="{% url 'delete_course' course.slug %}">delete</a>
+                  </div>
+                </div>
+
+              </article><!-- End blog entry -->
+            </div>
+          {% endfor %}
+
+
+
+
+<!-- End blog entries list -->
+
+<!-- End sidebar -->
+
+<!-- End blog sidebar -->
+
+        </div>
+        {% if courses.has_other_pages %}
+          <div class="blog-pagination" data-aos="fade-up">
+            <ul class="justify-content-center">
+              {% if courses.has_previous %}
+                <li class="disabled"><a href="?page={{courses.previous_page_number}}"> <i class="icofont-rounded-left"></i> </a></li>
+              {% endif %}
+              {% for i in courses.paginator.page_range %}
+                <li class="active"><a href="?page={{i}}">{{i}}</a></li>
+              {% endfor %}
+
+              {% if courses.has_next %}
+                <li><a href="?page={{courses.next_page_number}}"><i class="icofont-rounded-right"></i></a></li>
+              {% endif %}
+            </ul>
+          </div>
+          {% endif %}
+
+      </div>
+    </section><!-- End Blog Section -->
+
+  </main><!-- End #main -->
+
+{% endblock %}

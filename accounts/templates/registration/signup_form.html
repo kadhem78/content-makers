@@ -1,0 +1,101 @@
+
+
+{% extends 'header.html' %}
+
+{% block nav %}
+
+	 <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a href="blog.html">register page</a></li>
+        </ol>
+      </div>
+    </section>
+
+{% endblock nav %}
+
+
+{% block head-content %}
+    <section class="inner-page pt-3 contact" id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2 data-aos="fade-up">Create Account</h2>
+        </div>
+
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-xl-9 col-lg-12 mt-4">
+            <form action="" method="post" role="form" class="php-email-form" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-group">
+              	{{form.username}}
+                 <!-- <input type="text" class="form-control" name="username" id="email" placeholder="username" data-rule="email" data-msg="Please enter a valid username" /> -->
+                  <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                {{form.first_name}}
+                 <!-- <input type="text" class="form-control" name="username" id="email" placeholder="username" data-rule="email" data-msg="Please enter a valid username" /> -->
+                  <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                {{form.last_name}}
+                 <!-- <input type="text" class="form-control" name="username" id="email" placeholder="username" data-rule="email" data-msg="Please enter a valid username" /> -->
+                  <div class="validate"></div>
+              </div>
+              <div class="form-group">
+              	{{form.email}}
+                  <!--<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" /> -->
+                  <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                {{form.image_p}}
+                  <!--<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" /> -->
+                  <div class="validate"></div>
+              </div>
+              <div class="form-group">
+              	{{form.password1}}
+                <!--<input type="password" class="form-control" name="password" id="password" placeholder="your password" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />-->
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+              	{{form.password2}}
+                <!--<input type="password" class="form-control" name="password" id="subject" placeholder="re-write your password" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />-->
+                <div class="validate"></div>
+              </div>
+
+
+
+              <div class="form-group">
+                {{form.domain}}
+                <!--<input type="password" class="form-control" name="password" id="subject" placeholder="re-write your password" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />-->
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+              	{{form.location.label}} <br>
+              	{{form.location}}
+                <!--<input type="password" class="form-control" name="password" id="subject" placeholder="re-write your password" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />-->
+                <div class="validate"></div>
+              </div>
+
+
+
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Signup</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+      </div>
+    </section>
+
+{% endblock head-content %}
+
+
+
+	
+</form>

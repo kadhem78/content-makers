@@ -1,0 +1,110 @@
+{% extends 'header.html' %}
+{% load static %}
+
+
+{% block content %}
+		
+
+
+      	{% block nav %}
+      	    <section id="breadcrumbs" class="breadcrumbs">
+		      <div class="container contact">
+		      	<form request="GET" action="{% url 'search' %}" class="php-email-form">
+		      		{{searchform.keyword}} 
+		      		<br>
+		      		<button type="submit">Search</button>
+		      	</form>
+		      </div>
+		    </section>
+      	{% endblock nav %}
+        
+
+
+
+
+	{% block head-content %}
+
+	<section id="blog" class="blog"> 
+		
+			<div class="container">  
+				<div class="row">
+				{% if searchresult%}
+					{% for student in searchresult %}
+						{% if student.user.location == request.user.location %}
+				            <div class="col-lg-4  col-md-4" data-aos="fade-up">
+				              <article class="entry">
+
+				                <h2 class="entry-title">
+				                  <a href=""> <i class="fas fa-user"></i> {{student.user.username}}</a>
+				                </h2>
+
+				                <div class="entry-meta">
+				                  <ul>
+				                    <li class="d-flex align-items-center"><a href="">{{student.level}}</a></li>
+				                    <li class="d-flex align-items-center"><a href="">{{student.domain}}</a></li>
+				                  </ul>
+				                </div>
+
+				                <div class="entry-content">
+				                  <div class="read-more">
+				                    <a href="{% url 'updatestudent' student.user.username %}">update</a>
+				                  </div>
+				                </div>
+
+				              </article><!-- End blog entry -->
+				            </div>
+				        {% endif %}
+
+			        {% endfor %}
+				{% else %}
+				{% for user in users %}
+					{% if user.is_student == True %}
+			            <div class="col-lg-4  col-md-4" data-aos="fade-up">
+			              <article class="entry">
+
+			                <h2 class="entry-title">
+			                  <a href=""> <i class="fas fa-user"></i> {{user.student}}</a>
+			                </h2>
+
+			                <div class="entry-meta">
+			                  <ul>
+			                    <li class="d-flex align-items-center"><a href="">{{user.student.level}}</a></li>
+			                    <li class="d-flex align-items-center"><a href="">{{user.student.domain}}</a></li>
+			                  </ul>
+			                </div>
+
+			                <div class="entry-content">
+			                  <div class="read-more">
+			                    <a href="{% url 'updatestudent' user.username %}">update</a>
+			                  </div>
+			                </div>
+
+			              </article><!-- End blog entry -->
+			            </div>
+
+			         {% endif %}
+		        {% endfor %}
+		        {% endif %}
+				</div>
+			</div>
+
+	          {% if users.has_other_pages %}
+	          <div class="blog-pagination" data-aos="fade-up">
+	            <ul class="justify-content-center">
+	              {% if users.has_previous %}
+	                <li class="disabled"><a href="?page={{users.previous_page_number}}"> <i class="icofont-rounded-left"></i> </a></li>
+	              {% endif %}
+	              {% for i in users.paginator.page_range %}
+	                <li class="active"><a href="?page={{i}}">{{i}}</a></li>
+	              {% endfor %}
+
+	              {% if users.has_next %}
+	                <li><a href="?page={{users.next_page_number}}"><i class="icofont-rounded-right"></i></a></li>
+	              {% endif %}
+	            </ul>
+	          </div>
+	          {% endif %}
+		
+	</section>
+	{% endblock head-content %}
+{% endblock %}

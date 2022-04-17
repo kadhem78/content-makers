@@ -1,0 +1,72 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block content %}
+		
+
+      	{% block nav %}
+      	    <section id="breadcrumbs" class="breadcrumbs">
+		      <div class="container">
+		        <ol>
+		        	{% for categorie in categories %}
+		          		<li><a href="{% url 'courses' categorie.slug %}">{{categorie.title}}</a></li>
+		          	{% endfor %}
+		        </ol>
+		      </div>
+		    </section>
+      	{% endblock nav %}
+        
+
+
+    {% block head-content %}
+
+    <section>
+
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-lg-6">
+    				<img src="{{student.profile_image.url}}" class="testimonial-img" alt="" width="500" height="500">
+    			</div>
+	    		<div class="col-lg-6" id="profile-cont">
+	    			<!--<div>
+	    				{{student.user.username}}
+	    			</div>
+	    			<div>
+	    				{{student.user.email}}
+	    			</div>
+	    			<div>
+	    				{{student.level}}
+	    			</div>
+	    			<div>
+	    				{{student.domain}}
+	    			</div> -->
+	    			<!--<ul style="list-style:none;">
+	    				<li data-aos="fade-up"><i class="fas fa-user"></i> {{student.user.username}}</li>
+	    				<li data-aos="fade-up"><i class="fas fa-envelope"></i> {{student.user.email}}</li>
+	    				<li data-aos="fade-up"><i class="fas fa-layer-group"></i> {{student.level}}</li>
+	    				<li data-aos="fade-up"><i class="fas fa-atom"></i> {{student.domain}}</li>
+	    			</ul>
+	    			<br>
+	    			<a href="" class="card-button" data-aos="fade-up">Get Your Card</a> -->
+	    			<h3> Upgrade {{student.user}} Level </h3>
+	    			<form method="post">
+	    				{% csrf_token %}
+	    				<div class="form-group">{{form.user}}</div>
+	    				<div class="form-group">{{form.domain}}</div>
+	    				<div class="form-group">{{form.level}}</div>
+	    				
+	    				<div class="text-center ub"><button type="submit">Update</button></div>
+	    			</form>
+			    	
+			    	
+			    	
+	    		</div>
+		    	
+	    	</div>
+	    	
+    	</div>
+    </section>
+
+    {% endblock head-content %}
+
+{% endblock%}

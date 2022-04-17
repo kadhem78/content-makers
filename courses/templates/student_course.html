@@ -1,0 +1,98 @@
+
+{% extends 'base.html' %}
+{% block navbar %}
+            <li class="drop-down"><a href="">Courses</a>
+              <ul>
+              {% for categorie in categories %}
+                  <li><a href="{% url 'courses' categorie.slug %}">{{categorie.title}}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+{% endblock navbar %}
+{% block content %}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+		        	{% for categorie in categories %}
+		          		<li><a href="{% url 'courses' categorie.slug %}">{{categorie.title}}</a></li>
+		          	{% endfor %}
+        </ol>
+        
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container">
+
+        <div class="row">
+          {% for course in courses %}
+            <div class="col-lg-4  col-md-6 " data-aos="fade-up">
+              <article class="entry">
+
+                <div class="entry-img">
+                  <img src="{{course.course_img.url}}" alt="" class="img-fluid">
+                </div>
+
+                <h2 class="entry-title">
+                  <a href="blog-single.html">{{course.title}}</a>
+                </h2>
+
+                <div class="entry-meta">
+                  <ul>
+                    <li class="d-flex align-items-center"><i class="fas fa-layer-group"></i> <a href="">{{course.level}}</a></li>
+                    <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="">{{course.created_at | date:"M/d/Y"}}</a></li>
+                  </ul>
+                </div>
+
+                <div class="entry-content">
+                  <p>
+                    {{course.decription}}
+                  </p>
+                  <div class="read-more">
+                    <a href="{{course.course_url}}" target="_blank">Get Course</a>
+                  </div>
+                </div>
+
+              </article><!-- End blog entry -->
+            </div>
+          {% endfor %}
+
+
+
+
+<!-- End blog entries list -->
+
+<!-- End sidebar -->
+
+<!-- End blog sidebar -->
+
+        </div>
+        {% if courses.has_other_pages %}
+          <div class="blog-pagination" data-aos="fade-up">
+            <ul class="justify-content-center">
+              {% if courses.has_previous %}
+                <li class="disabled"><a href="?page={{courses.previous_page_number}}"> <i class="icofont-rounded-left"></i> </a></li>
+              {% endif %}
+              {% for i in courses.paginator.page_range %}
+                <li class="active"><a href="?page={{i}}">{{i}}</a></li>
+              {% endfor %}
+
+              {% if courses.has_next %}
+                <li><a href="?page={{courses.next_page_number}}"><i class="icofont-rounded-right"></i></a></li>
+              {% endif %}
+            </ul>
+          </div>
+          {% endif %}
+
+      </div>
+    </section><!-- End Blog Section -->
+
+  </main><!-- End #main -->
+
+{% endblock %}

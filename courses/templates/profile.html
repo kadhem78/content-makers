@@ -1,0 +1,79 @@
+{% extends 'header.html' %}
+{% load static %}
+<style type="text/css">
+	li{
+		padding: 20px;
+	}
+</style>
+{% block navbar %}
+            <li class="drop-down"><a href="">Courses</a>
+              <ul>
+              {% for categorie in categories %}
+                  <li><a href="{% url 'courses' categorie.slug %}">{{categorie.title}}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+{% endblock navbar %}
+{% block content %}
+		
+
+      	{% block nav %}
+      	    <section id="breadcrumbs" class="breadcrumbs">
+		      <div class="container">
+		        <ol>
+		        	{% for categorie in categories %}
+		          		<li><a href="{% url 'courses' categorie.slug %}">{{categorie.title}}</a></li>
+		          	{% endfor %}
+		        </ol>
+		      </div>
+		    </section>
+      	{% endblock nav %}
+        
+
+
+    {% block head-content %}
+
+    <section>
+
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-lg-6 prfl-cont">
+    				<img src="{{student.profile_image.url}}" class="testimonial-img prfl-img" alt="" data-aos="fade-up" width="500" height="500">
+    			</div>
+	    		<div class="col-lg-6" id="profile-cont">
+	    			<!--<div>
+	    				{{student.user.username}}
+	    			</div>
+	    			<div>
+	    				{{student.user.email}}
+	    			</div>
+	    			<div>
+	    				{{student.level}}
+	    			</div>
+	    			<div>
+	    				{{student.domain}}
+	    			</div> -->
+	    			<ul style="list-style:none;" class="pro-list">
+	    				<li data-aos="fade-up"><i class="fas fa-user"></i> {{student.user.username}}</li>
+	    				<li data-aos="fade-up"><i class="fas fa-envelope"></i> {{student.user.email}}</li>
+	    				<li data-aos="fade-up"><i class="fas fa-layer-group"></i> {{student.level}}</li>
+	    				<li data-aos="fade-up"><i class="fas fa-atom"></i> {{student.domain}}</li>
+	    				<li data-aos="fade-up"><i class="fas fa-atom"></i> {{student.user.location}}</li>
+	    			</ul>
+	    			<br>
+
+
+
+			    	
+			    	
+			    	
+	    		</div>
+		    	
+	    	</div>
+	    	
+    	</div>
+    </section>
+
+    {% endblock head-content %}
+
+{% endblock%}

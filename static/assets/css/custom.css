@@ -1,0 +1,57 @@
+#profile-cont li{
+	padding:20px;
+	background-color: #f3fdff;
+	margin-bottom: 10px;
+	color: #0e79a2;
+}
+#profile-cont li i{
+	margin-right: 10px;
+	color:#ab3e4d;
+}
+.card-button{
+	background-color: #bf5264;
+	color: #fff;
+	padding: 10px;
+	margin-top: 50px;
+	margin-left: 50%;
+}
+.card-button:hover{
+	background-color: #ab3e4d;
+	color: #fff
+}
+
+
+/* manage users */ 
+h3{
+	padding-bottom: 20px;
+	text-align: center;
+	color: #635551;
+	rgb(1-255 , x , z)
+	rgba(1-255 , x , z , 0-1)
+}
+.ub button{
+	background-color: #bf5264 !important;
+	border:none;
+	width: 120px;
+	height: 40px;
+	color:#fff;
+	margin-top: 15px;
+}
+
+/* profile */ 
+
+.passwordreset input{
+    width: 30%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
